@@ -3,84 +3,324 @@
   "assessment_date": "2026-09-02",
   "controls": [
     {
-      "id": "REQ-1.2.1",
+      "id": "REQ-5.2.4",
       "family": "Network Security Controls",
       "description": "Configuration standards for NSC rulesets are defined, implemented, and maintained.",
-      "status": "fail",
+      "status": "pass",
       "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
+      "evidence_ref": "scan-run-900"
     },
     {
-      "id": "REQ-2.2.4",
+      "id": "REQ-11.6.9",
       "family": "Secure Configuration",
       "description": "Only necessary services, protocols, and daemons are enabled on system components.",
       "status": "fail",
       "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
+      "evidence_ref": "scan-run-901"
     },
     {
-      "id": "REQ-3.5.1",
+      "id": "REQ-1.1.2",
+      "family": "Protect Stored Account Data",
+      "description": "Primary account numbers are rendered unreadable anywhere they are stored.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-902"
+    },
+    {
+      "id": "REQ-10.1.9",
+      "family": "Secure Systems and Software",
+      "description": "All system components and software are protected from known vulnerabilities via timely patching.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-903"
+    },
+    {
+      "id": "REQ-12.5.7",
+      "family": "Access Control",
+      "description": "An access control model is defined and includes appropriate assignment of privileges based on job classification.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-904"
+    },
+    {
+      "id": "REQ-5.1.3",
+      "family": "Identification and Authentication",
+      "description": "Minimum password complexity and length requirements are enforced.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-905"
+    },
+    {
+      "id": "REQ-5.2.4-1",
+      "family": "Logging and Monitoring",
+      "description": "Time-synchronization technology is implemented across all system components.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-906"
+    },
+    {
+      "id": "REQ-7.1.6",
+      "family": "Vulnerability Management",
+      "description": "External vulnerability scans are performed quarterly by an Approved Scanning Vendor.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-907"
+    },
+    {
+      "id": "REQ-1.6.8",
+      "family": "Security Awareness",
+      "description": "Personnel acknowledge receipt and understanding of security policies annually.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-908"
+    },
+    {
+      "id": "REQ-7.1.9",
+      "family": "Network Security Controls",
+      "description": "Configuration standards for NSC rulesets are defined, implemented, and maintained.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-909"
+    },
+    {
+      "id": "REQ-10.3.4",
+      "family": "Secure Configuration",
+      "description": "System components are configured to prevent misuse via default accounts and settings.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-910"
+    },
+    {
+      "id": "REQ-11.2.5",
+      "family": "Protect Stored Account Data",
+      "description": "Data retention and disposal policies limit storage of account data to what is necessary.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-911"
+    },
+    {
+      "id": "REQ-2.4.5",
+      "family": "Secure Systems and Software",
+      "description": "All system components and software are protected from known vulnerabilities via timely patching.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-912"
+    },
+    {
+      "id": "REQ-6.2.6",
+      "family": "Access Control",
+      "description": "Access to system components is limited to only that which is necessary.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-913"
+    },
+    {
+      "id": "REQ-5.6.2",
+      "family": "Identification and Authentication",
+      "description": "Multi-factor authentication is implemented for all access into the cardholder data environment.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-914"
+    },
+    {
+      "id": "REQ-9.6.4",
+      "family": "Logging and Monitoring",
+      "description": "Time-synchronization technology is implemented across all system components.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-915"
+    },
+    {
+      "id": "REQ-5.6.9",
+      "family": "Vulnerability Management",
+      "description": "Internal vulnerability scans are performed quarterly and after significant changes.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-916"
+    },
+    {
+      "id": "REQ-1.2.1",
+      "family": "Security Awareness",
+      "description": "Security awareness training is reviewed and updated at least once every 12 months.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-917"
+    },
+    {
+      "id": "REQ-2.2.6",
+      "family": "Network Security Controls",
+      "description": "NSCs between all wireless networks and the cardholder data environment are implemented.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-918"
+    },
+    {
+      "id": "REQ-7.6.8",
+      "family": "Secure Configuration",
+      "description": "Only necessary services, protocols, and daemons are enabled on system components.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-919"
+    },
+    {
+      "id": "REQ-4.6.9",
       "family": "Protect Stored Account Data",
       "description": "Primary account numbers are rendered unreadable anywhere they are stored.",
       "status": "pass",
       "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
+      "evidence_ref": "scan-run-920"
     },
     {
-      "id": "REQ-6.3.3",
+      "id": "REQ-10.4.7",
       "family": "Secure Systems and Software",
-      "description": "All system components and software are protected from known vulnerabilities via timely patching.",
-      "status": "fail",
+      "description": "Change control processes are followed for all changes to system components.",
+      "status": "pass",
       "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
+      "evidence_ref": "scan-run-921"
     },
     {
-      "id": "REQ-7.2.1",
+      "id": "REQ-3.5.8",
       "family": "Access Control",
-      "description": "An access control model is defined and includes appropriate assignment of privileges based on job classification.",
-      "status": "partial",
+      "description": "Access to system components is limited to only that which is necessary.",
+      "status": "pass",
       "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
+      "evidence_ref": "scan-run-922"
     },
     {
-      "id": "REQ-8.3.6",
+      "id": "REQ-2.2.3",
       "family": "Identification and Authentication",
       "description": "Minimum password complexity and length requirements are enforced.",
-      "status": "pass",
-      "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
-    },
-    {
-      "id": "REQ-10.4.1",
-      "family": "Logging and Monitoring",
-      "description": "Audit logs are reviewed at least once daily for anomalies or suspicious activity.",
-      "status": "fail",
-      "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
-    },
-    {
-      "id": "REQ-11.3.1",
-      "family": "Vulnerability Management",
-      "description": "Internal vulnerability scans are performed quarterly and after significant changes.",
       "status": "partial",
       "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
+      "evidence_ref": "scan-run-923"
     },
     {
-      "id": "REQ-12.6.2",
-      "family": "Security Awareness",
-      "description": "Security awareness training is reviewed and updated at least once every 12 months.",
-      "status": "pass",
-      "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
-    },
-    {
-      "id": "REQ-1.4.2",
-      "family": "Network Security Controls",
-      "description": "Inbound traffic from untrusted networks to trusted networks is restricted.",
+      "id": "REQ-2.4.7",
+      "family": "Logging and Monitoring",
+      "description": "Time-synchronization technology is implemented across all system components.",
       "status": "fail",
       "last_checked": "2026-08-30",
-      "evidence_ref": "scan-run-0912"
+      "evidence_ref": "scan-run-924"
+    },
+    {
+      "id": "REQ-9.3.9",
+      "family": "Vulnerability Management",
+      "description": "A risk-ranking process is used to prioritize remediation of identified vulnerabilities.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-925"
+    },
+    {
+      "id": "REQ-2.6.9",
+      "family": "Security Awareness",
+      "description": "Security awareness training is reviewed and updated at least once every 12 months.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-926"
+    },
+    {
+      "id": "REQ-6.1.5",
+      "family": "Network Security Controls",
+      "description": "NSCs between all wireless networks and the cardholder data environment are implemented.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-927"
+    },
+    {
+      "id": "REQ-1.6.5",
+      "family": "Secure Configuration",
+      "description": "System components are configured to prevent misuse via default accounts and settings.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-928"
+    },
+    {
+      "id": "REQ-9.1.5",
+      "family": "Protect Stored Account Data",
+      "description": "Data retention and disposal policies limit storage of account data to what is necessary.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-929"
+    },
+    {
+      "id": "REQ-4.2.6",
+      "family": "Secure Systems and Software",
+      "description": "Change control processes are followed for all changes to system components.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-930"
+    },
+    {
+      "id": "REQ-9.1.6",
+      "family": "Access Control",
+      "description": "An access control model is defined and includes appropriate assignment of privileges based on job classification.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-931"
+    },
+    {
+      "id": "REQ-6.3.4",
+      "family": "Identification and Authentication",
+      "description": "Multi-factor authentication is implemented for all access into the cardholder data environment.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-932"
+    },
+    {
+      "id": "REQ-10.1.2",
+      "family": "Logging and Monitoring",
+      "description": "Audit logs are reviewed at least once daily for anomalies or suspicious activity.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-933"
+    },
+    {
+      "id": "REQ-2.5.3",
+      "family": "Vulnerability Management",
+      "description": "A risk-ranking process is used to prioritize remediation of identified vulnerabilities.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-934"
+    },
+    {
+      "id": "REQ-9.2.5",
+      "family": "Security Awareness",
+      "description": "Security awareness training is reviewed and updated at least once every 12 months.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-935"
+    },
+    {
+      "id": "REQ-9.6.4-1",
+      "family": "Network Security Controls",
+      "description": "Network diagrams are maintained showing all connections to the cardholder data environment.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-936"
+    },
+    {
+      "id": "REQ-11.6.6",
+      "family": "Secure Configuration",
+      "description": "Configuration standards are updated as new vulnerabilities are identified.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-937"
+    },
+    {
+      "id": "REQ-8.1.4",
+      "family": "Protect Stored Account Data",
+      "description": "Sensitive authentication data is not retained after authorization.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-938"
+    },
+    {
+      "id": "REQ-1.5.9",
+      "family": "Secure Systems and Software",
+      "description": "All system components and software are protected from known vulnerabilities via timely patching.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-939"
     }
   ]
 }

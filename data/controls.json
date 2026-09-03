@@ -1,0 +1,86 @@
+{
+  "framework": "PCI-DSS v4.0 (sample subset)",
+  "assessment_date": "2026-09-02",
+  "controls": [
+    {
+      "id": "REQ-1.2.1",
+      "family": "Network Security Controls",
+      "description": "Configuration standards for NSC rulesets are defined, implemented, and maintained.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-2.2.4",
+      "family": "Secure Configuration",
+      "description": "Only necessary services, protocols, and daemons are enabled on system components.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-3.5.1",
+      "family": "Protect Stored Account Data",
+      "description": "Primary account numbers are rendered unreadable anywhere they are stored.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-6.3.3",
+      "family": "Secure Systems and Software",
+      "description": "All system components and software are protected from known vulnerabilities via timely patching.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-7.2.1",
+      "family": "Access Control",
+      "description": "An access control model is defined and includes appropriate assignment of privileges based on job classification.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-8.3.6",
+      "family": "Identification and Authentication",
+      "description": "Minimum password complexity and length requirements are enforced.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-10.4.1",
+      "family": "Logging and Monitoring",
+      "description": "Audit logs are reviewed at least once daily for anomalies or suspicious activity.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-11.3.1",
+      "family": "Vulnerability Management",
+      "description": "Internal vulnerability scans are performed quarterly and after significant changes.",
+      "status": "partial",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-12.6.2",
+      "family": "Security Awareness",
+      "description": "Security awareness training is reviewed and updated at least once every 12 months.",
+      "status": "pass",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    },
+    {
+      "id": "REQ-1.4.2",
+      "family": "Network Security Controls",
+      "description": "Inbound traffic from untrusted networks to trusted networks is restricted.",
+      "status": "fail",
+      "last_checked": "2026-08-30",
+      "evidence_ref": "scan-run-0912"
+    }
+  ]
+}

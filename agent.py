@@ -4,16 +4,27 @@ drafts remediation tickets + an executive summary, so a GRC/security
 professional doesn't have to do it by hand.
 
 Run with: python agent.py
-Requires ANTHROPIC_API_KEY set in the environment (or configure a
-different model provider below, e.g. Bedrock).
+
+Uses Claude via AWS Bedrock (not the direct Anthropic API), so it runs on
+AWS hackathon credits. Requires AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
+and AWS_DEFAULT_REGION set in the environment, and Bedrock model access
+granted for the Claude model below in that region.
 """
 
 import os
 
 from strands import Agent
-from strands.models.anthropic import AnthropicModel
+from strands.models import BedrockModel
 
 from tools import get_control_status, classify_risk, draft_remediation, generate_summary
+
+# Set via env var so it's easy to swap models without editing code.
+# This should match whatever model you confirmed works in the Bedrock
+# Playground (check the model's detail page in Model Catalog for the
+# exact ID string).
+BEDROCK_MODEL_ID = os.environ.get(
+    "BEDROCK_MODEL_ID", "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+)
 
 SYSTEM_PROMPT = """You are ComplyAgent, an assistant for compliance and security
 professionals who handles the repetitive parts of compliance gap triage.
@@ -34,9 +45,10 @@ will act on, not a sales pitch.
 
 
 def build_agent() -> Agent:
-    model = AnthropicModel(
-        model_id="claude-sonnet-5",
-        max_tokens=2048,
+    model = BedrockModel(
+        model_id=BEDROCK_MODEL_ID,
+        region_name=os.environ.get("AWS_DEFAULT_REGION", "us-east-1"),
+        max_tokens=8192,
     )
     return Agent(
         model=model,
@@ -46,9 +58,11 @@ def build_agent() -> Agent:
 
 
 if __name__ == "__main__":
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("Set ANTHROPIC_API_KEY in your environment before running.")
-        print("  export ANTHROPIC_API_KEY=sk-ant-...")
+    if not os.environ.get("AWS_ACCESS_KEY_ID"):
+        print("Set your AWS credentials in the environment before running:")
+        print("  set AWS_ACCESS_KEY_ID=...")
+        print("  set AWS_SECRET_ACCESS_KEY=...")
+        print("  set AWS_DEFAULT_REGION=us-east-1")
         raise SystemExit(1)
 
     agent = build_agent()

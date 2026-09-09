@@ -1,0 +1,14 @@
+{
+  "framework": "ISO/IEC 27001:2022 (sample subset)",
+  "assessment_date": "2026-09-07",
+  "controls": [
+    {"id": "A.5.1", "family": "Organizational Controls", "description": "Policies for information security are defined and approved by management.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "iso-run-01"},
+    {"id": "A.5.9", "family": "Organizational Controls", "description": "An inventory of information and associated assets is maintained.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "iso-run-01"},
+    {"id": "A.5.23", "family": "Organizational Controls", "description": "Processes for information security in cloud services are defined.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "iso-run-01"},
+    {"id": "A.6.3", "family": "People Controls", "description": "Personnel receive appropriate information security awareness training.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "iso-run-01"},
+    {"id": "A.7.4", "family": "Physical Controls", "description": "Physical security monitoring is applied to premises and facilities.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "iso-run-01"},
+    {"id": "A.8.9", "family": "Technological Controls", "description": "Configuration management is applied to hardware, software, and networks.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "iso-run-01"},
+    {"id": "A.8.16", "family": "Technological Controls", "description": "Networks are monitored for anomalous behaviour.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "iso-run-01"},
+    {"id": "A.8.24", "family": "Technological Controls", "description": "Cryptographic controls are used to protect confidentiality and integrity.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "iso-run-01"}
+  ]
+}

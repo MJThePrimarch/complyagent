@@ -1,0 +1,20 @@
+{
+  "framework": "SOC 2 Trust Services Criteria (sample subset)",
+  "assessment_date": "2026-09-08",
+  "controls": [
+    {"id": "CC1.1", "family": "Security", "description": "The entity demonstrates a commitment to integrity and ethical values.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "CC2.3", "family": "Security", "description": "Internal communication channels support the functioning of internal control.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "CC5.2", "family": "Security", "description": "Controls are selected and developed that mitigate risks to acceptable levels.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "CC6.1", "family": "Security", "description": "Logical access security measures restrict access to authorized users.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "CC6.6", "family": "Security", "description": "The entity implements boundary protection systems to prevent unauthorized access.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "CC7.2", "family": "Security", "description": "The entity monitors system components for anomalies indicative of security events.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "A1.1", "family": "Availability", "description": "The entity maintains, monitors, and evaluates current processing capacity.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "A1.2", "family": "Availability", "description": "Environmental protections, backup, and recovery infrastructure are implemented.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "PI1.1", "family": "Processing Integrity", "description": "System processing is complete, accurate, timely, and authorized.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "C1.1", "family": "Confidentiality", "description": "Confidential information is protected during collection, use, and retention.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "C1.2", "family": "Confidentiality", "description": "Confidential information is disposed of securely once no longer required.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "P1.1", "family": "Privacy", "description": "Personal information is collected consistent with the entity's privacy notice.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "P3.2", "family": "Privacy", "description": "Explicit consent is obtained before personal information is used for new purposes.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"},
+    {"id": "P6.1", "family": "Privacy", "description": "Personal information is disclosed only to authorized third parties.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "soc2-run-01"}
+  ]
+}

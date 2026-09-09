@@ -1,0 +1,12 @@
+{
+  "framework": "NIST Cybersecurity Framework 2.0 (sample subset)",
+  "assessment_date": "2026-09-07",
+  "controls": [
+    {"id": "GV.RM-01", "family": "Govern", "description": "Organizational risk management objectives are established and agreed to by stakeholders.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "nist-run-01"},
+    {"id": "ID.AM-01", "family": "Identify", "description": "Inventories of hardware managed by the organization are maintained.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "nist-run-01"},
+    {"id": "PR.AA-01", "family": "Protect", "description": "Identities and credentials for authorized users are managed.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "nist-run-01"},
+    {"id": "PR.DS-01", "family": "Protect", "description": "Confidentiality, integrity, and availability of data-at-rest are protected.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "nist-run-01"},
+    {"id": "DE.CM-01", "family": "Detect", "description": "Networks and network services are monitored to find potentially adverse events.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "nist-run-01"},
+    {"id": "RS.MA-01", "family": "Respond", "description": "The incident response plan is executed once an incident is declared.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "nist-run-01"}
+  ]
+}

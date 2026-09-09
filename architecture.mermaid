@@ -1,0 +1,44 @@
+flowchart TD
+    subgraph UI["1. USER INTERFACE"]
+        U["Security/GRC Professional"] -->|"Picks framework or uploads\nown dataset, clicks Run"| WEBAPP["ComplyAgent Web UI\n(Streamlit, deployed on\nStreamlit Community Cloud)\ncomplyagent-mj.streamlit.app"]
+        WEBAPP -->|"Instant metrics\n(no LLM call)"| FASTPATH["Pass rate, gap count,\ncritical count shown\nimmediately"]
+    end
+
+    subgraph AGENT["2. STRANDS AGENT CORE LOOP"]
+        direction TB
+        LOOP["Strands Agent\n(agent.py)"]
+        MODEL["Model: Claude Sonnet 4.5\nreasons about which tool to\ncall next, in what order"]
+        REASON["Agent receives tool result,\ndecides next action or\nfinal response"]
+        LOOP --> MODEL --> REASON --> LOOP
+    end
+
+    subgraph TOOLS["3. TOOLS & INTEGRATIONS"]
+        direction TB
+        T1["get_control_status\nloads chosen dataset,\ngroups by pass/fail/partial"]
+        T2["classify_risk\nranks gaps by severity\n(family-weight fallback for\nunrecognized frameworks)"]
+        T3["draft_remediation\nwrites a ticket per gap\n(title, owner, priority)"]
+        T4["generate_summary\nproduces score, top-5 risks,\nexec email draft"]
+        DATA[("Dataset sources:\nPCI-DSS sample,\nSOC 2 sample,\nor user-uploaded JSON")]
+        DATA --> T1
+        T1 --> T2 --> T3 --> T4
+    end
+
+    subgraph AWS["4. AWS SERVICES USED"]
+        direction TB
+        BEDROCK["Amazon Bedrock\nCross-region inference profile:\nus.anthropic.claude-sonnet-4-5\n(via BedrockModel in Strands)"]
+        SECRETS["Streamlit Secrets\n(AWS credentials, never in code)"]
+        AGENTCORE["Amazon Bedrock AgentCore\n(stretch goal - not yet implemented)"]
+    end
+
+    subgraph OUTPUT["5. OUTPUT"]
+        REPORT["Compliance Report:\noverall score, ranked gaps,\ndrafted tickets, exec email draft"]
+    end
+
+    WEBAPP --> LOOP
+    LOOP <-->|"tool calls"| TOOLS
+    MODEL <-->|"inference requests"| BEDROCK
+    SECRETS -.->|"auth"| BEDROCK
+    LOOP -.->|"optional deployment path"| AGENTCORE
+    T4 --> REPORT
+    REPORT --> WEBAPP
+    WEBAPP --> U

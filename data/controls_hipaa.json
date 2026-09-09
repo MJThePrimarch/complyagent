@@ -1,0 +1,12 @@
+{
+  "framework": "HIPAA Security Rule (sample subset)",
+  "assessment_date": "2026-09-07",
+  "controls": [
+    {"id": "164.308(a)(1)", "family": "Administrative Safeguards", "description": "A security management process, including risk analysis, is implemented.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "hipaa-run-01"},
+    {"id": "164.308(a)(5)", "family": "Administrative Safeguards", "description": "Security awareness and training program is implemented for all workforce members.", "status": "pass", "last_checked": "2026-09-05", "evidence_ref": "hipaa-run-01"},
+    {"id": "164.310(a)(1)", "family": "Physical Safeguards", "description": "Facility access controls limit physical access to systems housing ePHI.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "hipaa-run-01"},
+    {"id": "164.312(a)(1)", "family": "Technical Safeguards", "description": "Access control mechanisms restrict ePHI access to authorized users only.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "hipaa-run-01"},
+    {"id": "164.312(b)", "family": "Technical Safeguards", "description": "Audit controls record and examine activity in systems containing ePHI.", "status": "partial", "last_checked": "2026-09-05", "evidence_ref": "hipaa-run-01"},
+    {"id": "164.312(e)(1)", "family": "Technical Safeguards", "description": "Transmission security measures protect ePHI transmitted over networks.", "status": "fail", "last_checked": "2026-09-05", "evidence_ref": "hipaa-run-01"}
+  ]
+}

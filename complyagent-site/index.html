@@ -1,26 +1,376 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComplyAgent — Compliance triage that runs itself</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05070d;
+    --panel:#0e1626;
+    --panel-2:#111d33;
+    --line:#1e2c46;
+    --text:#e9eefb;
+    --muted:#8ea0c2;
+    --blue:#2563eb;
+    --cyan:#38bdf8;
+    --green:#10b981;
+    --mint:#34d399;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(5,7,13,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;max-width:1120px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;}
+  .brand img{width:32px;height:32px;}
+  .navlinks{display:flex;gap:32px;font-size:15px;color:var(--muted);}
+  .navlinks a:hover{color:var(--text);}
+  .navcta{
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#fff;padding:9px 18px;border-radius:10px;font-weight:600;font-size:14px;
+  }
+  @media(max-width:720px){.navlinks{display:none;}}
 
-    <meta
-      name="description"
-      content="ComplyAgent — AI-powered compliance triage and remediation."
-    />
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 64px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;
+  }
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;text-align:center;}}
+  .hero h1{
+    font-size:clamp(34px,5vw,54px);font-weight:700;line-height:1.08;
+    margin-bottom:22px;
+  }
+  .hero p.lead{
+    font-size:18px;color:var(--muted);max-width:480px;margin-bottom:32px;
+  }
+  @media(max-width:860px){.hero p.lead{margin-left:auto;margin-right:auto;}}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  @media(max-width:860px){.cta-row{justify-content:center;}}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#fff;padding:14px 26px;border-radius:12px;font-weight:600;font-size:15px;
+    box-shadow:0 8px 24px rgba(37,99,235,0.35);
+  }
+  .btn-secondary{
+    border:1px solid var(--line);color:var(--text);
+    padding:14px 26px;border-radius:12px;font-weight:600;font-size:15px;
+  }
+  .btn-secondary:hover{border-color:var(--cyan);}
+  .hero-art{position:relative;}
+  .hero-art img{filter:drop-shadow(0 20px 60px rgba(37,99,235,0.35));}
 
-    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  /* one deliberate load-in sequence */
+  .reveal{opacity:0;transform:translateY(14px);animation:rise 0.7s ease forwards;}
+  .reveal:nth-child(1){animation-delay:0.05s;}
+  .reveal:nth-child(2){animation-delay:0.18s;}
+  .reveal:nth-child(3){animation-delay:0.31s;}
+  @keyframes rise{to{opacity:1;transform:none;}}
 
-    <title>ComplyAgent — AI Compliance Triage</title>
-  </head>
+  /* ---------- STATS ---------- */
+  .stats{padding:64px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  @media(max-width:720px){.stats-grid{grid-template-columns:1fr;}}
+  .stat-num{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(48px,7vw,72px);
+    background:linear-gradient(135deg,var(--cyan),var(--mint));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    line-height:1;
+  }
+  .stat-label{font-size:16px;color:var(--text);margin-top:10px;max-width:360px;}
+  .stat-source{font-size:13px;color:var(--muted);margin-top:8px;}
+  .stat-source a{text-decoration:underline;text-decoration-color:var(--line);}
 
-  <body>
-    <div id="app"></div>
+  /* ---------- FEATURES ---------- */
+  .section{padding:80px 0;}
+  .section-head{max-width:560px;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px);font-weight:700;margin-bottom:14px;}
+  .section-head p{color:var(--muted);font-size:16px;}
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  .feature-list{display:flex;flex-direction:column;gap:0;}
+  .feature-row{
+    display:grid;grid-template-columns:220px 1fr;gap:32px;
+    padding:28px 0;border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .feature-list .feature-row:last-child{border-bottom:1px solid var(--line);}
+  @media(max-width:640px){.feature-row{grid-template-columns:1fr;gap:8px;}}
+  .feature-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;}
+  .feature-desc{color:var(--muted);font-size:15px;max-width:520px;}
+
+  /* ---------- PIPELINE ---------- */
+  .pipeline{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:44px 32px;
+  }
+  .pipeline-row{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;
+  }
+  @media(max-width:800px){.pipeline-row{grid-template-columns:1fr;gap:28px;}}
+  .pipeline-row::before{
+    content:"";position:absolute;top:26px;left:6%;right:6%;height:2px;
+    background:linear-gradient(90deg,var(--blue),var(--green));
+    opacity:0.4;
+  }
+  @media(max-width:800px){.pipeline-row::before{display:none;}}
+  .pstep{position:relative;padding:0 16px;text-align:left;}
+  .pstep-num{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--panel-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;
+    color:var(--cyan);margin-bottom:16px;position:relative;z-index:2;
+  }
+  .pstep-title{font-weight:600;font-size:16px;margin-bottom:6px;}
+  .pstep-desc{font-size:14px;color:var(--muted);}
+
+  /* ---------- LIVE EMBED ---------- */
+  .try-panel{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .try-panel iframe{
+    width:100%;height:820px;border:0;display:block;background:#0b1220;
+  }
+  .try-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 20px;border-bottom:1px solid var(--line);
+    flex-wrap:wrap;gap:10px;
+  }
+  .try-head-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;}
+  .try-fullscreen{font-size:13px;color:var(--cyan);border:1px solid var(--line);padding:7px 14px;border-radius:8px;}
+  .try-fullscreen:hover{border-color:var(--cyan);}
+  @media(max-width:640px){.try-panel iframe{height:640px;}}
+
+  /* ---------- FRAMEWORKS ---------- */
+  .fw-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px;}
+  .fw-pill{
+    border:1px solid var(--line);border-radius:999px;
+    padding:9px 18px;font-size:14px;color:var(--muted);
+  }
+  .fw-pill.on{border-color:var(--cyan);color:var(--text);}
+
+  /* ---------- CTA BAND ---------- */
+  .ctaband{
+    background:linear-gradient(135deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:24px;
+    padding:56px 40px;text-align:center;margin:0 28px;
+  }
+  .ctaband h2{font-size:clamp(24px,3.4vw,32px);margin-bottom:14px;}
+  .ctaband p{color:var(--muted);margin-bottom:28px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:56px 0 32px;margin-top:40px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  @media(max-width:700px){.foot-grid{grid-template-columns:1fr;}}
+  .foot-brand{display:flex;align-items:center;gap:10px;font-weight:600;margin-bottom:12px;}
+  .foot-brand img{width:28px;height:28px;}
+  .foot-tag{color:var(--muted);font-size:14px;max-width:280px;}
+  .foot-col h4{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:14px;}
+  .foot-col a{display:block;font-size:14px;color:var(--text);margin-bottom:10px;}
+  .foot-col a:hover{color:var(--cyan);}
+  .foot-bottom{
+    border-top:1px solid var(--line);padding-top:24px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:13px;color:var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand"><img src="assets/favicon.png" alt=""> ComplyAgent</div>
+    <div class="navlinks">
+      <a href="#try">Try it live</a>
+      <a href="#how">How it works</a>
+      <a href="#impact">Why it matters</a>
+      <a href="#frameworks">Frameworks</a>
+    </div>
+    <a class="navcta" href="#try">Launch app</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="reveal">Your compliance backlog,<br>triaged before your coffee gets cold.</h1>
+      <p class="lead reveal">ComplyAgent reads your control assessment, ranks what's actually urgent, drafts the remediation tickets, and writes the exec email — so review is the only thing left on your plate.</p>
+      <div class="cta-row reveal">
+        <a class="btn-primary" href="#try">Try it live below ↓</a>
+        <a class="btn-secondary" href="https://github.com/MJThePrimarch/complyagent" target="_blank">View source</a>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <img src="assets/logo.png" alt="ComplyAgent logo">
+    </div>
+  </div>
+</section>
+
+<section class="stats" id="impact">
+  <div class="wrap stats-grid">
+    <div>
+      <div class="stat-num">2.71×</div>
+      <div class="stat-label">Non-compliance costs organizations, on average, more than maintaining compliance in the first place.</div>
+      <div class="stat-source">Source: <a href="https://www.ponemon.org/news-updates/blog/security/the-true-cost-of-compliance-a-benchmark-study-of-multinational-organizations.html" target="_blank">Ponemon Institute</a></div>
+    </div>
+    <div>
+      <div class="stat-num">54%</div>
+      <div class="stat-label">Of security teams spend five or more hours every single week on manual compliance work.</div>
+      <div class="stat-source">Source: <a href="https://swimlane.com/blog/grc-compliance-burdens/" target="_blank">Swimlane, 2025 survey data</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Built for the part of compliance nobody enjoys</h2>
+      <p>Not another dashboard to babysit. ComplyAgent does the reading, the ranking, and the drafting — you do the judgment call.</p>
+    </div>
+    <div class="feature-list">
+      <div class="feature-row">
+        <div class="feature-name">Instant risk triage</div>
+        <div class="feature-desc">Every control gets read, grouped by pass/fail/partial, and ranked by severity the moment you load a dataset — before any AI call even runs.</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-name">Auto-drafted tickets</div>
+        <div class="feature-desc">Each gap becomes a structured remediation ticket: title, plain-language risk description, suggested owning team, and priority — ready to hand to whoever owns the fix.</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-name">Executive summaries</div>
+        <div class="feature-desc">A leadership-ready email draft with your overall score and top risks, written in plain language — not another spreadsheet nobody outside security will open.</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-name">Framework-agnostic scoring</div>
+        <div class="feature-desc">The severity engine isn't hardcoded to one standard. Run it against PCI-DSS, SOC 2, or your own control library — same pipeline, same logic.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="try">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Try it right now</h2>
+      <p>This is the real, working agent — running live via AWS Bedrock, not a mockup.</p>
+    </div>
+    <div class="try-panel">
+      <div class="try-head">
+        <div class="try-head-title">ComplyAgent — live</div>
+        <a class="try-fullscreen" href="https://complyagent-mj.streamlit.app" target="_blank">Open full screen ↗</a>
+      </div>
+      <iframe src="https://complyagent-mj.streamlit.app/?embed=true" title="ComplyAgent live app" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How it actually works</h2>
+      <p>Four tools, orchestrated by an agent built on the Strands Agents SDK, reasoning through the pipeline via Claude on Amazon Bedrock.</p>
+    </div>
+    <div class="pipeline">
+      <div class="pipeline-row">
+        <div class="pstep">
+          <div class="pstep-num">1</div>
+          <div class="pstep-title">Load</div>
+          <div class="pstep-desc">Reads the chosen control dataset and groups every control by status.</div>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">2</div>
+          <div class="pstep-title">Classify</div>
+          <div class="pstep-desc">Ranks failing and partial controls by severity, weighted by control family.</div>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">3</div>
+          <div class="pstep-title">Draft</div>
+          <div class="pstep-desc">Writes a remediation ticket for each of the top gaps, with a suggested owner.</div>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">4</div>
+          <div class="pstep-title">Summarize</div>
+          <div class="pstep-desc">Produces the overall score, top-5 risks, and an exec-ready email draft.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="frameworks">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Not locked to one standard</h2>
+      <p>The scoring and ticket-drafting logic works the same regardless of which framework you're assessing against.</p>
+    </div>
+    <div class="fw-row">
+      <div class="fw-pill on">PCI-DSS v4.0</div>
+      <div class="fw-pill on">SOC 2 Trust Services Criteria</div>
+      <div class="fw-pill">Your own control library (upload JSON)</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="ctaband">
+    <h2>Stop drafting tickets by hand.</h2>
+    <p>Run it against the sample data, or bring your own control library.</p>
+    <a class="btn-primary" href="#try">Try it live ↑</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><img src="assets/favicon.png" alt=""> ComplyAgent</div>
+        <div class="foot-tag">An AI agent that triages compliance gaps and drafts the paperwork that gets them fixed.</div>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <a href="https://complyagent-mj.streamlit.app" target="_blank">Launch app</a>
+        <a href="#how">How it works</a>
+        <a href="#frameworks">Frameworks</a>
+      </div>
+      <div class="foot-col">
+        <h4>Project</h4>
+        <a href="https://github.com/MJThePrimarch/complyagent" target="_blank">Source code</a>
+        <a href="#impact">Why it matters</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>Built with Strands Agents SDK, running on Amazon Bedrock.</div>
+      <div>© 2026 ComplyAgent</div>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
